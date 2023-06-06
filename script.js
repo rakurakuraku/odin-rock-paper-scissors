@@ -7,10 +7,28 @@
 //determine computer choice
     //how to make it random?
         //pick a number, 0 = rock, 1 = paper 2 = scissors
-
+/*
 let cpuChoice = '';
 let playerChoice = '';
 let message = '';
+
+
+function computerChoice() { 
+    if (Math.floor(Math.random() * 3) === 0) {
+        cpuChoice = 'rock';}
+    if (Math.floor(Math.random() * 3) === 1) {
+        cpuChoice = 'paper';}
+    if (Math.floor(Math.random() * 3) === 2) {
+        cpuChoice = 'scissors';}
+    return(cpuChoice);
+    }
+*/
+//determine outcome
+
+
+let cpuChoice;
+let message;
+let playerChoice;
 
 function computerChoice() { 
     if (Math.floor(Math.random() * 3) === 0) {
@@ -22,11 +40,7 @@ function computerChoice() {
     return(cpuChoice);
     }
 
-//determine outcome
-
-
-
-function round(playerChoice, cpuChoice) {
+function findWinner(playerChoice, cpuChoice) {
     if ((playerChoice === 'rock') && (cpuChoice === 'scissors') ||
         (playerChoice === 'paper') && (cpuChoice === 'rock') ||
         (playerChoice === 'scissors') && (cpuChoice === 'paper')) {
@@ -44,6 +58,13 @@ function round(playerChoice, cpuChoice) {
     if (playerChoice === cpuChoice) {
         message = 'Draw!'
     }
+    return(message);
+}
+
+function oneRound() {
+    playerChoice = prompt('Rock, Paper, Scissors. Shoot! \nYour choice?')
+    cpuChoice = computerChoice();
+    findWinner(playerChoice, cpuChoice);
     console.log(message);
 }
 
