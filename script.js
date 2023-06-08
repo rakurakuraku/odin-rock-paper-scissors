@@ -28,20 +28,20 @@ function computerChoice() {
     return(cpuChoice);
     }
 
-function findWinner(playerChoice, cpuChoice) {
-    if ((playerChoice === 'Rock') && (cpuChoice === 'Scissors') ||
-        (playerChoice === 'Paper') && (cpuChoice === 'Rock') ||
-        (playerChoice === 'Scissors') && (cpuChoice === 'Paper')) {
+function findWinner(man, machine) {
+    if ((man === 'Rock') && (machine === 'Scissors') ||
+        (man === 'Paper') && (machine === 'Rock') ||
+        (man === 'Scissors') && (machine === 'Paper')) {
         ++ playerScore;
-        message = 'You Win! ' + playerChoice + ' beats ' + cpuChoice;
+        message = 'You Win! ' + man + ' beats ' + machine;
     }
-    if ((cpuChoice === 'Rock') && (playerChoice === 'Scissors') ||
-        (cpuChoice === 'Paper') && (playerChoice === 'Rock') ||
-        (cpuChoice === 'Scissors') && (playerChoice === 'Paper')) {
+    if ((machine === 'Rock') && (man === 'Scissors') ||
+        (machine === 'Paper') && (man === 'Rock') ||
+        (machine === 'Scissors') && (man === 'Paper')) {
         ++ cpuScore;
-        message = 'You Lose! ' + cpuChoice + ' beats ' + playerChoice;
+        message = 'You Lose! ' + machine + ' beats ' + man;
     }
-    if (playerChoice === cpuChoice) {
+    if (man === machine) {
         message = 'Draw!'
     }
     return(message);
@@ -64,12 +64,10 @@ function oneRound() {
 
     //what are the rules for a draw? 0 points.
     //playerChoice input is rendered to all lowercase internally.
-    //need to customize message according to outcome
+    //message customized according to outcome
     //scores are 1 point for a win, 0 for loss or draw
-    //make message case capitalized at source rather than when forming message
-//communicate result to player
+    //message case capitalized at source rather than when forming message
+    //communicate result to player via message variable
 
 //later
-//assign score for each round
-//keep score (up to 5)
 //declare winner at end of game (5 rounds)
