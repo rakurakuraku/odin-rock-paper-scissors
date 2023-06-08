@@ -69,8 +69,6 @@ function oneRound() {
     //message case capitalized at source rather than when forming message
     //communicate result to player via message variable
 
-//later
-//declare winner at end of game (5 rounds)
 
 // game of 5 rounds
 function game() {
@@ -90,5 +88,5 @@ function game() {
         if (cpuScore === playerScore) {
             finalMessage = playerScore + " - " + cpuScore + ". " + "It's a draw!";
         }
-        return(finalMessage);
+        console.log(finalMessage);
 }
