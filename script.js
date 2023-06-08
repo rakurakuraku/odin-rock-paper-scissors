@@ -71,3 +71,24 @@ function oneRound() {
 
 //later
 //declare winner at end of game (5 rounds)
+
+// game of 5 rounds
+function game() {
+       let finalMessage;
+       roundCount = 0;
+       playerScore = 0;
+       cpuScore = 0;
+       while (roundCount < 5) {
+          oneRound();
+}
+        if (playerScore > cpuScore) {
+            finalMessage = playerScore + " - " + cpuScore + ". " + "You win!";
+        }
+        if (cpuScore > playerScore) {
+            finalMessage = playerScore + " - " + cpuScore + ". " + "You lose!";
+        }
+        if (cpuScore === playerScore) {
+            finalMessage = playerScore + " - " + cpuScore + ". " + "It's a draw!";
+        }
+        return(finalMessage);
+}
