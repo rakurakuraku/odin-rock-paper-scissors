@@ -12,11 +12,42 @@
 
 
 let cpuChoice;
-let message;
+let roundOutcome;
 let playerChoice;
 let playerScore = 0;
 let cpuScore = 0;
-let roundCount = 0;
+let roundCount;
+
+let selectors = document.querySelector('#selectors');
+let messagePane = document.querySelector('#messagePane');
+let oneUpScore = document.querySelector('#oneUpScore');
+let twoUpScore = document.querySelector('#twoUpScore');
+
+selectors.addEventListener('click', (event) => {
+    let target = event.target;
+
+    switch(target.id) {
+        case 'rock':
+            //console.log('rock');
+            playerChoice = 'Rock'
+            oneRound()
+            break;
+    }
+    switch(target.id) {
+        case 'paper':
+            //console.log('paper');
+            playerChoice = 'Paper'
+            oneRound()
+            break;
+    }
+    switch(target.id) {
+        case 'scissors':
+            //console.log('scissors');
+            playerChoice = 'Scissors'
+            oneRound()
+            break;
+    }
+});
 
 function computerChoice() { 
     if (Math.floor(Math.random() * 3) === 0) {
@@ -33,33 +64,39 @@ function findWinner(man, machine) {
         (man === 'Paper') && (machine === 'Rock') ||
         (man === 'Scissors') && (machine === 'Paper')) {
         ++ playerScore;
-        message = 'You Win! ' + man + ' beats ' + machine;
+        roundOutcome = 'You Win! ' + man + ' beats ' + machine;
+        console.log(playerScore);
     }
     if ((machine === 'Rock') && (man === 'Scissors') ||
         (machine === 'Paper') && (man === 'Rock') ||
         (machine === 'Scissors') && (man === 'Paper')) {
         ++ cpuScore;
-        message = 'You Lose! ' + machine + ' beats ' + man;
+        roundOutcome = 'You Lose! ' + machine + ' beats ' + man;
+        console.log(cpuScore);
     }
     if (man === machine) {
-        message = 'Draw!'
+        roundOutcome = 'Draw!'
     }
-    return(message);
+    return(roundOutcome);
 }
 
-function capitalize(str) {
+/*function capitalize(str) {
     let inter = str.toLowerCase();
     let toCap = inter.slice(0,1);
     let cap = toCap.toUpperCase();
     return(cap + inter.slice(1));
   }
-
+*/
 function oneRound() {
-    playerChoice = capitalize(prompt('Rock, Paper, Scissors. Shoot! \nYour choice?'));
+    //playerChoice = capitalize(prompt('Rock, Paper, Scissors. Shoot! \nYour choice?'));
+    
     cpuChoice = computerChoice();
     findWinner(playerChoice, cpuChoice);
     ++ roundCount;
-    console.log(message);
+    console.log(roundOutcome);
+    messagePane.textContent = roundOutcome;
+    oneUpScore.textContent = '1UP: ' + playerScore;
+    twoUpScore.textContent = 'CPU: ' + cpuScore;
 }
 
     //what are the rules for a draw? 0 points.
