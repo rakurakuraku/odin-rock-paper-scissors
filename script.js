@@ -18,36 +18,53 @@ let playerScore = 0;
 let cpuScore = 0;
 let roundCount;
 
-let selectors = document.querySelector('#selectors');
+let selectors = document.getElementById('selectors');
 let messagePane = document.querySelector('#messagePane');
 let oneUpScore = document.querySelector('#oneUpScore');
 let twoUpScore = document.querySelector('#twoUpScore');
 
-selectors.addEventListener('click', (event) => {
-    let target = event.target;
 
-    switch(target.id) {
+
+selectors.addEventListener('click', function(event) {
+    let target = event.target;
+    console.log(event.target);
+
+    const isButton = target.tagname === 'BUTTON' || target.closest('button');
+
+    if (isButton) {
+
+        const clicked = target.closest('button');
+        const buttonId = clicked.id;
+
+    switch(buttonId) {
         case 'rock':
-            //console.log('rock');
-            playerChoice = 'Rock'
-            oneRound()
+            console.log('rock');
+            //playerChoice = 'Rock'
+            findWinner('Rock', computerChoice());
+            //game();
             break;
-    }
-    switch(target.id) {
+    
+    
         case 'paper':
-            //console.log('paper');
-            playerChoice = 'Paper'
-            oneRound()
+            console.log('paper');
+            //playerChoice = 'Paper'
+            findWinner('Paper', computerChoice());
+            //game();
             break;
-    }
-    switch(target.id) {
+    
+    
         case 'scissors':
-            //console.log('scissors');
-            playerChoice = 'Scissors'
-            oneRound()
+            console.log('scissors');
+            //playerChoice = 'Scissors'
+            findWinner('Scissors', computerChoice());
+            //game();
             break;
     }
+    //findWinner(playerChoice, computerChoice);
+    game();
+}
 });
+
 
 function computerChoice() { 
     if (Math.floor(Math.random() * 3) === 0) {
@@ -60,24 +77,29 @@ function computerChoice() {
     }
 
 function findWinner(man, machine) {
+    cpuChoice = computerChoice();
     if ((man === 'Rock') && (machine === 'Scissors') ||
         (man === 'Paper') && (machine === 'Rock') ||
         (man === 'Scissors') && (machine === 'Paper')) {
         ++ playerScore;
         roundOutcome = 'You Win! ' + man + ' beats ' + machine;
-        console.log(playerScore);
+        //console.log(playerScore);
     }
     if ((machine === 'Rock') && (man === 'Scissors') ||
         (machine === 'Paper') && (man === 'Rock') ||
         (machine === 'Scissors') && (man === 'Paper')) {
         ++ cpuScore;
         roundOutcome = 'You Lose! ' + machine + ' beats ' + man;
-        console.log(cpuScore);
+        //console.log(cpuScore);
     }
     if (man === machine) {
         roundOutcome = 'Draw!'
     }
-    return(roundOutcome);
+
+    messagePane.textContent = roundOutcome;
+    oneUpScore.textContent = playerScore;
+    twoUpScore.textContent = cpuScore;
+    //return(roundOutcome);
 }
 
 /*function capitalize(str) {
@@ -89,10 +111,10 @@ function findWinner(man, machine) {
 */
 function oneRound() {
     //playerChoice = capitalize(prompt('Rock, Paper, Scissors. Shoot! \nYour choice?'));
-    
+        
     cpuChoice = computerChoice();
     findWinner(playerChoice, cpuChoice);
-    ++ roundCount;
+    //++ roundCount;
     console.log(roundOutcome);
     messagePane.textContent = roundOutcome;
     oneUpScore.textContent = '1UP: ' + playerScore;
@@ -109,21 +131,26 @@ function oneRound() {
 
 // game of 5 rounds
 function game() {
-       let finalMessage;
-       roundCount = 0;
-       playerScore = 0;
-       cpuScore = 0;
-       while (roundCount < 5) {
-          oneRound();
-}
-        if (playerScore > cpuScore) {
-            finalMessage = playerScore + " - " + cpuScore + ". " + "You win!";
+       //let finalMessage;
+       //roundCount = 0;
+       //playerScore = 0;
+       //cpuScore = 0;
+       //while ((playerScore < 5 && cpuScore <= 4) || (cpuScore < 5 && playerScore <= 4)) {
+        
+//}
+    //let finalScore = '';
+        if (playerScore == 5) {
+            messagePane.textContent = playerScore + " - " + cpuScore + ". " + "You win!";
+            playerScore = 0;
+            cpuScore = 0;
         }
-        if (cpuScore > playerScore) {
-            finalMessage = playerScore + " - " + cpuScore + ". " + "You lose!";
+        if (cpuScore  == 5) {
+            messagePane.textContent = playerScore + " - " + cpuScore + ". " + "You lose!";
+            playerScore = 0;
+            cpuScore = 0;
         }
-        if (cpuScore === playerScore) {
-            finalMessage = playerScore + " - " + cpuScore + ". " + "It's a draw!";
-        }
-        console.log(finalMessage);
+        //if (cpuScore === playerScore) {
+        //    finalMessage = playerScore + " - " + cpuScore + ". " + "It's a draw!";
+        // }
+        //console.log(finalMessage);
 }
