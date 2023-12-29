@@ -19,9 +19,12 @@ let cpuScore = 0;
 let roundCount;
 
 let selectors = document.getElementById('selectors');
-let messagePane = document.querySelector('#messagePane');
+let messagePane = document.querySelector('#outcomeMessage');
 let oneUpScore = document.querySelector('#oneUpScore');
 let twoUpScore = document.querySelector('#twoUpScore');
+let adminMessage = document.getElementById('adminMessage');
+let oneUpWeapon = document.getElementById('oneUpWeapon')
+let cpuWeapon = document.getElementById('cpuWeapon')
 
 
 
@@ -38,29 +41,23 @@ selectors.addEventListener('click', function(event) {
 
     switch(buttonId) {
         case 'rock':
-            console.log('rock');
-            //playerChoice = 'Rock'
+            oneUpWeapon.textContent = 'Rock';
             findWinner('Rock', computerChoice());
-            //game();
             break;
     
     
         case 'paper':
-            console.log('paper');
-            //playerChoice = 'Paper'
+            oneUpWeapon.textContent = 'Paper';
             findWinner('Paper', computerChoice());
-            //game();
             break;
     
     
         case 'scissors':
-            console.log('scissors');
-            //playerChoice = 'Scissors'
+            oneUpWeapon.textContent = 'Scissors';
             findWinner('Scissors', computerChoice());
-            //game();
             break;
     }
-    //findWinner(playerChoice, computerChoice);
+
     game();
 }
 });
@@ -68,16 +65,18 @@ selectors.addEventListener('click', function(event) {
 
 function computerChoice() { 
     if (Math.floor(Math.random() * 3) === 0) {
-        cpuChoice = 'Rock';}
+        cpuChoice = 'Rock';
+        cpuWeapon.textContent = 'Rock';}
     if (Math.floor(Math.random() * 3) === 1) {
-        cpuChoice = 'Paper';}
+        cpuChoice = 'Paper';
+        cpuWeapon.textContent = 'Paper';}
     if (Math.floor(Math.random() * 3) === 2) {
-        cpuChoice = 'Scissors';}
+        cpuChoice = 'Scissors';
+        cpuWeapon.textContent = 'Scissors';}
     return(cpuChoice);
     }
 
 function findWinner(man, machine) {
-    cpuChoice = computerChoice();
     if ((man === 'Rock') && (machine === 'Scissors') ||
         (man === 'Paper') && (machine === 'Rock') ||
         (man === 'Scissors') && (machine === 'Paper')) {
@@ -108,7 +107,7 @@ function findWinner(man, machine) {
     let cap = toCap.toUpperCase();
     return(cap + inter.slice(1));
   }
-*/
+
 function oneRound() {
     //playerChoice = capitalize(prompt('Rock, Paper, Scissors. Shoot! \nYour choice?'));
         
@@ -120,7 +119,7 @@ function oneRound() {
     oneUpScore.textContent = '1UP: ' + playerScore;
     twoUpScore.textContent = 'CPU: ' + cpuScore;
 }
-
+*/
     //what are the rules for a draw? 0 points.
     //playerChoice input is rendered to all lowercase internally.
     //message customized according to outcome
@@ -139,13 +138,19 @@ function game() {
         
 //}
     //let finalScore = '';
+        //if (cpuScore <5 && playerScore <5) {
+        //    adminMessage.textContent = "Click a symbol to play, first to 5 wins!";
+        //}
+        if (playerScore < 5 && cpuScore < 5) {
+            adminMessage.textContent = ' '
+        }
         if (playerScore == 5) {
-            messagePane.textContent = playerScore + " - " + cpuScore + ". " + "You win!";
+            adminMessage.textContent = playerScore + " - " + cpuScore + ". " + "You win!";
             playerScore = 0;
             cpuScore = 0;
         }
         if (cpuScore  == 5) {
-            messagePane.textContent = playerScore + " - " + cpuScore + ". " + "You lose!";
+            adminMessage.textContent = playerScore + " - " + cpuScore + ". " + "You lose!";
             playerScore = 0;
             cpuScore = 0;
         }

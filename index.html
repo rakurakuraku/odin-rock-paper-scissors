@@ -7,22 +7,34 @@
   <script src="script.js" defer></script>
 </head>
 <body>
+<div id="header">  
+<h1>RockPaperScissors</h1>
+</div>  
 <div id="game">  
 <div id="selectors">
   <button id="rock"><img src="images/Rock.jpg" alt="Rock" ></button>
   <button id="paper"><img src="images/Paper.jpg" alt="Paper" ></button>
   <button id="scissors"><img src="images/Scissors.jpg" alt="Scissors" ></button>
 </div>
-<div id="messages">
+<div id="scoreBoard">
   <div id="scores">
     <div><span>1UP: </span><span id="oneUpScore"></span></div>
     <div><span>CPU: </span><span id="twoUpScore"></span></div>
   </div>
-  <div id="messagePane"></div>
-  <div id="again"></div>
+  <div id="weapons">
+    <div><span id="oneUpWeapon"></span></div>
+    <div><span id="cpuWeapon"></span></div>
+  </div>
+  <div id="messages">
+  <div id="outcomeMessage"></div>
+  <div id="adminMessage"></div>
+  <p>Click a symbol to play. First to 5 wins.</p>
+  </div>
 </div>
 </div>
-
+<div id="footer">
+  <p>Copyright © Mia (pictures) and Dan (the rest) 2023</p>
+</div>
 
 </body>
 </html>
